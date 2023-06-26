@@ -21,7 +21,11 @@ def pregunta_01():
     214
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    return sum([int(fila[1]) for fila in data])
 
 
 def pregunta_02():
