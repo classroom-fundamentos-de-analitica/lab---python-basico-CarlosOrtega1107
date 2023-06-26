@@ -351,7 +351,7 @@ def pregunta_09():
 
     for linea in columna5:
         for cadena in linea.split(","):
-            clave, valor = cadena.split(":")
+            clave = cadena.split(":")
             d[clave] += 1
 
 
