@@ -21,7 +21,11 @@ def pregunta_01():
     214
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    return sum([int(fila[1]) for fila in data])
 
 
 def pregunta_02():
@@ -39,7 +43,27 @@ def pregunta_02():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+
+    d = {
+        "A" : 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "E": 0,
+        }
+    for fila in data:
+        letra = fila[0]
+        if letra in d:
+            d[letra] += 1
+
+    return list(d.items())
+
 
 
 def pregunta_03():
@@ -57,7 +81,25 @@ def pregunta_03():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+
+    d = {
+        "A" : 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "E": 0,
+        }
+    for fila in data:
+        letra = fila[0]
+        if letra in d:
+            d[letra] += int(fila[1])
+    return list(d.items())
 
 
 def pregunta_04():
@@ -82,7 +124,34 @@ def pregunta_04():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+
+    d = {
+        "01" : 0,
+        "02": 0,
+        "03": 0,
+        "04": 0,
+        "05": 0,
+        "06": 0,
+        "07": 0,
+        "08": 0,
+        "09": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0
+        }
+
+    fechas=[z[2].split("-") for z in data[0:]]
+    for fecha in fechas:
+        mes = fecha[1]
+        if mes in d:
+            d[mes] += 1
+    return list(d.items())
 
 
 def pregunta_05():
@@ -100,7 +169,26 @@ def pregunta_05():
     ]
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+
+    d = {
+    "A" : [],
+    "B": [],
+    "C": [],
+    "D": [],
+    "E": [],
+    }
+    for fila in data:
+        letra = fila[0]
+        if letra in d:
+            d[letra].append(int(fila[1]))
+
+    return [(i[0], max(i[1]), min(i[1])) for i in d.items()]
 
 
 def pregunta_06():
@@ -125,7 +213,25 @@ def pregunta_06():
     ]
 
     """
-    return
+    from collections import defaultdict
+
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+    columna5 = [f[4] for f in data]
+
+    d = defaultdict(list)
+
+    for linea in columna5:
+        for cadena in linea.split(","):
+            clave, valor = cadena.split(":")
+            d[clave].append(int(valor))
+
+    x = sorted(d.items())
+    return [(i[0], min(i[1]), max(i[1])) for i in x]
 
 
 def pregunta_07():
@@ -147,9 +253,23 @@ def pregunta_07():
         (8, ["E", "D", "E", "A", "B"]),
         (9, ["A", "B", "E", "A", "A", "C"]),
     ]
-
     """
-    return
+    from collections import defaultdict
+
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+    d = defaultdict(list)
+
+    for fila in data:
+        letra = fila[0]
+        numero = int(fila[1])
+        d[numero].append(letra)
+
+    return sorted(d.items())
 
 
 def pregunta_08():
@@ -174,7 +294,27 @@ def pregunta_08():
     ]
 
     """
-    return
+    from collections import defaultdict
+
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+    d = defaultdict(list)
+
+    for fila in data:
+        letra = fila[0]
+        numero = int(fila[1])
+        d[numero].append(letra)
+
+    x = sorted(d.items())
+
+    nuevo = []
+    for tupla in x:
+        nuevo.append((tupla[0], sorted(list(set(tupla[1])))))
+    return nuevo
 
 
 def pregunta_09():
@@ -197,7 +337,24 @@ def pregunta_09():
     }
 
     """
-    return
+    from collections import defaultdict
+
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+    columna5 = [f[4] for f in data]
+
+    d = defaultdict(int)
+
+    for linea in columna5:
+        for cadena in linea.split(","):
+            clave, valor = cadena.split(":")
+            d[clave] += 1
+
+    return dict(sorted(d.items()))
 
 
 def pregunta_10():
@@ -218,7 +375,20 @@ def pregunta_10():
 
 
     """
-    return
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+    r = []
+    for linea in data:
+        letra = linea[0]
+        n1 = len(linea[3].split(","))
+        n2 = len(linea[4].split(","))
+
+        r.append((letra, n1, n2))
+    return r
 
 
 def pregunta_11():
@@ -239,7 +409,22 @@ def pregunta_11():
 
 
     """
-    return
+    from collections import defaultdict
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    #s = sum([int(fila[1]) for fila in data])
+
+
+    d = defaultdict(int)
+
+    for linea in data:
+        letras = linea[3].split(",")
+        for l in letras:
+            d[l] += int(linea[1])
+
+    return dict(sorted(d.items()))
 
 
 def pregunta_12():
@@ -257,4 +442,18 @@ def pregunta_12():
     }
 
     """
-    return
+    from collections import defaultdict
+    with open("data.csv", "r") as file:
+        data=file.readlines()
+    data=[line.replace("\n", "") for line in data]
+    data=[line.split("\t") for line in data]
+    
+    dic = defaultdict(int)
+
+    for fila in data:
+        letra = fila[0]
+        for l in fila[4].split(","):
+            clave, valor = l.split(":")
+            dic[letra] += int(valor)
+
+    return dict(sorted(dic.items()))
