@@ -351,11 +351,10 @@ def pregunta_09():
 
     for linea in columna5:
         for cadena in linea.split(","):
-            clave = cadena.split(":")
+            clave, valor = cadena.split(":")
             d[clave] += 1
 
-
-    return list(d.items())
+        return dict(sorted(list(d.items())))
 
 
 def pregunta_10():
