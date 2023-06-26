@@ -354,7 +354,7 @@ def pregunta_09():
             clave, valor = cadena.split(":")
             d[clave] += 1
 
-        return dict(sorted(list(d.items())))
+        return dict(sorted(d.items()))
 
 
 def pregunta_10():
